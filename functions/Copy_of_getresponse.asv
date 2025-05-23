@@ -1,0 +1,71 @@
+% This function waits for a response and saves the
+function [Trial, ACC, waitingTime] = getresponse(expinfo, Trial, expTrial,e)
+% Start iternal MATLAB stop-clock
+
+tic
+start = GetSecs;
+
+% Initialise the response variables
+Trial(expTrial).ACC = [0 0 0 0 ];
+Trial(expTrial).RT = [0 0 0 0 ];
+Trial(expTrial).response = [0 0 0 0];
+
+while toc < 0.1; KbCheck;  end
+% io64(expinfo.ioObj, expinfo.PortAddress, 0); % Stop Writing to Output Port
+% read out keyboard until valid key is pressed or maximal allowed response
+% time is reached
+ScreenCleared = 0;
+while toc < expinfo.MaxRT
+
+  % Read keyboard
+    [keyIsDown,timeSecs,keyCode] = KbCheck;
+     if keyIsDown
+        % get pressed Key
+        pressedKey = KbName(keyCode);
+                % Abbruch des Experiments
+        if  strcmp(pressedKey,expinfo.AbortKey)
+            closeexp(expinfo.window);
+        end  
+        % Testen ob die Taste zu den erlaubten Antwort-Tasten geh�rt
+        
+        if strlength(pressedKey) ~= 1
+            response = -9;
+            break
+        elseif length(pressedKey) > 1
+            response = -9;
+            break
+          else
+            if any(pressedKey,expinfo.RespKeys)
+                response = 1;
+            end 
+        end
+              else
+        response = 0;
+    end 
+end
+
+Trial(expTrial).keyPressed = timeSecs;
+Trial(expTrial).response(f) = pressedKey;
+if response == 1 % Wenn eine erlaubte Taste gedr�ckt wurde
+    Trial(expTrial).RT(f) = timeSecs - start; % Berechnung der Reaktionszeit
+     % Test wether the correct response was given
+    if pressedKey==Trial(expTrial).CorResp(e)
+        ACC = 1;
+        Trial(expTrial).ACC(f)=1;
+    else
+        ACC = 0;
+        Trial(expTrial).ACC(f)=0;
+    end
+elseif response == 0  % Wenn keine erlaubte Antwort gegeben wurde -> Miss
+    Trial(expTrial).RT(e) = expinfo.MaxRT;
+    ACC = -2;
+    Trial(expTrial).ACC(e)=-2;
+    Trial(expTrial).response(e) = -2;
+    %    io64(expinfo.ioObj, expinfo.PortAddress, expinfo.Marker.Miss);
+    
+    
+
+%% End of Function
+% This function was programmed by Gidon T. Frischkorn, as part of a
+% template for MATLAB experiments. If you have any questions please contact
+% me via mail: gidon.frischkorn@psychologie.uni-heidelberg.de
