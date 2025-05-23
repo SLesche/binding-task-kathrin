@@ -66,13 +66,13 @@ expinfo.SetSize_updating = [4:6];
 expinfo.UpdatingSteps= [0, 1, 2, max(expinfo.SetSize_updating) ];
 expinfo.conditionInfo = 5;
 expinfo.maxsetsize = 7;
-expinfo.TaskOrders = flip(perms(1:3));
+expinfo.TaskOrders = 1;
 % expinfo.TaskOrders = perms(1:6);
-expinfo.blockorder = expinfo.TaskOrders(mod(expinfo.subject, length(expinfo.TaskOrders))+1,:);
+expinfo.blockorder = 1;
 expinfo.nPracTrials_1=3;
 expinfo.nPracTrials_2=7;
 expinfo.numberBlocks = 3;
-expinfo.nExpTrials_Binding=24;
+expinfo.nExpTrials_Binding=16;
 expinfo.nExpTrials_Updating=40;
 
 

@@ -22,14 +22,13 @@ end
 
     
     line1= [Anrede  expinfo.subjectName ','];
-    line2= '\n\n\n Willkommen zur�ck!';
-    line3= '\n\n\n\n Nun werden Sie nochmal die drei Aufgaben bearbeiten,' ;
-    line4= '\n\n die Sie bereits kennen gelernt haben.' ; 
-    line5 = '\n\n  Zur Erinnerung werden die Aufgaben nochmal erkl�rt und ge�bt.';
-    line6 = '\n\n\n Dr�cken Sie die "L"-Taste um fortzufahren.';
+    line2= '\n\n\n Willkommen zurück!';
+    line3= '\n\n\n\n Nun werden Sie nochmal zwei Aufgaben bearbeiten.' ;
+    line5 = '\n\n Diese Aufgaben werden nochmal erklärt und geübt.';
+    line6 = '\n\n\n Drücken Sie die "L"-Taste um fortzufahren.';
     Screen('TextSize', expinfo.window, 20)
     Screen('TextFont', expinfo.window, 'Arial' )
-    DrawFormattedText(expinfo.window, [line1 line2 line3 line4 line5 line6],'center', expinfo.YPixels*0.25)
+    DrawFormattedText(expinfo.window, [line1 line2 line3 line5 line6],'center', expinfo.YPixels*0.25)
     Screen('Flip', expinfo.window)
     KbStrokeWait;
 

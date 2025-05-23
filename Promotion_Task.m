@@ -68,7 +68,7 @@ Priority(topPriorityLevel);
 
  HelloParticipant(expinfo)
 % Allgemeine Instruktionen 
-InstSlideGenerally = 1;
+InstSlideGenerally = 2; % Start with the second slide of the general instructions
 while InstSlideGenerally <= expinfo.InstStopGenerally % Loop until last slide of general instruction
     % Paste the FileName for the Instrcution Slide depending on the current
     % slide to be displayed
