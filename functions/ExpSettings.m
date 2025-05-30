@@ -72,7 +72,7 @@ expinfo.blockorder = 1;
 expinfo.nPracTrials_1=3;
 expinfo.nPracTrials_2=7;
 expinfo.numberBlocks = 3;
-expinfo.nExpTrials_Binding=16;
+expinfo.nExpTrials_Binding=24;
 expinfo.nExpTrials_Updating=40;
 
 

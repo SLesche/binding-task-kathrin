@@ -1,14 +1,8 @@
 %This function serves to welcome the participant by their name
 
 function expinfo = HelloParticipant(expinfo)
-%% Get correct name
-if strcmp(expinfo.subjectSex, 'm')
-    Anrede = 'Lieber Herr ';
-elseif strcmp(expinfo.subjectSex, 'w')
-    Anrede= 'Liebe Frau ';
-else
+
     Anrede= 'Hallo ';
-end
     
     Brain=[expinfo.InstFolder 'Brain.jpg'];
     ima=imread(Brain); % Read in the File
