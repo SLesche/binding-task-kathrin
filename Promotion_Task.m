@@ -15,7 +15,7 @@ addpath('functions', 'Instructions', 'DataFiles');
 TaskName = 'Binding_Task';
 
 % Define variables to be specified when the experiment starts.
-vars = {'sub','sex','name'};
+vars = {'sub','name'};
 % The following variables can be specified:
     % Subject ID = 'sub'
     % Session Number = 'ses'
@@ -67,41 +67,8 @@ Priority(topPriorityLevel);
 % finished you cannot move back.
 
  HelloParticipant(expinfo)
-% Allgemeine Instruktionen 
-InstSlideGenerally = 2; % Start with the second slide of the general instructions
-while InstSlideGenerally <= expinfo.InstStopGenerally % Loop until last slide of general instruction
-    % Paste the FileName for the Instrcution Slide depending on the current
-    % slide to be displayed
-    Instruction=[expinfo.InstFolder 'InstGen' num2str(InstSlideGenerally) expinfo.InstExtension];
-    ima=imread(Instruction); % Read in the File
 
-    % Put the File on the PTB window
-     InstScreen = Screen('MakeTexture',expinfo.window,ima);
-    Screen('DrawTexture', expinfo.window, InstScreen); % draw the scene
-    Screen('Flip', expinfo.window);
-    WaitSecs(0.3);
-    
-    % Wait for a key press of the right or left key to navigate back an
-    % forth within the instructions
-    if InstSlideGenerally == 1
-        [ForwardBackward] = BackOrNext(expinfo,0);
-        if ForwardBackward == -1 
-            HelloParticipant(expinfo)
-            InstSlideGenerally = 1;
-        else 
-       InstSlideGenerally = InstSlideGenerally + ForwardBackward;
-        end 
-    else
-        [ForwardBackward] = BackOrNext(expinfo,0);
-            InstSlideGenerally = InstSlideGenerally + ForwardBackward;
-    end
-end
-
-% clean up no longer relevant variables after the instrction to keep the
-% workspace tidy
-clearvars Instruction ima InstSlideGenerally
-clearScreen(expinfo);
-WaitSecs(0.1);
+ 
 Screen('TextSize', expinfo.window, 30)
 
 expinfo.Block = 1;
